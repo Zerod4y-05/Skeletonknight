@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 94: expected statement.
+    pos (873, 244) zpos 0.2 rotate -2.0 zoom 7.0
+                         ^
+
+Ren'Py Version: Ren'Py 8.0.3.22090809
+Fri Mar 10 10:39:31 2023
