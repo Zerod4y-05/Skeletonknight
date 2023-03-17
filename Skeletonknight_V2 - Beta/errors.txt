@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 71: end of line expected.
-    hide slayer_lightattack:
-                           ^
+File "game/script.rpy", line 154: Line is indented, but the preceding show statement statement does not expect a block. Please check this line's indentation.
+    subpixel True pos (835, 235) zpos 0.2 yzoom 1.0 zoom 6.91 
+    ^
 
 Ren'Py Version: Ren'Py 8.0.3.22090809
-Fri Mar 17 09:29:15 2023
+Fri Mar 17 10:50:16 2023
