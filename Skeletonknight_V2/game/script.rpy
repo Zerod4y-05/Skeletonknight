@@ -84,7 +84,7 @@ label fightmenu:
                         pos (541, 276) zpos 0.2 zoom 6.51 
                     "You win the combat encounter!"
                     jump victory_menu
-            "Heavy Attack":                                                  #Added heavy attack option
+            "Heavy Attack":                                                  #Heavy attack 
                 hide slayer_idle
                 show slayer_heavyattack:                                 
                     pos (665, 277) zpos 0.2 yzoom 1.0 zoom 6.31 
