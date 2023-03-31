@@ -1,4 +1,4 @@
-﻿define s = Character("Slayer", color="#19090c")
+﻿define s = Character("Slayer", color="#ffffff")
 default question_tally = 0
 
 label start:
@@ -8,7 +8,8 @@ show slayer
 
 label question:
     show slayer at right
-    
+    "These pesky skeletons are lurking again" 
+        
     s "Are you ready to fight?"
     
     menu:
@@ -29,7 +30,7 @@ label question_selector:
                 s "Coward..."
                 $ renpy.full_restart()
             "No":
-                s "Good! Let's go!"
+                "Slayer" "Good! Let's go!"
                 $ question_tally += 1
                 jump fight_scene
 
@@ -42,7 +43,7 @@ label fight_scene:
 
     show slayer_idle:
         pos (586, 265) zpos 0.2 zoom 6.41 
-
+        
     show skeleton_idle:
         pos (873, 244) zpos 0.2 rotate -2.0 zoom 7.0 matrixtransform ScaleMatrix(1.0, 1.0, 1.0)*OffsetMatrix(0.0, 0.0, 0.0)*RotateMatrix(0.0, 0.0, 0.0) 
 
@@ -50,9 +51,9 @@ label fight_scene:
         pos (-132, -297) rotate 0.0 
 
 label fightmenu:
-    $ player_hp = 10
-    $ enemy_hp = 6
-
+    $ player_hp = 12
+    $ enemy_hp = 10
+    show screen hp_bars_1v1
     while player_hp > 0:
         hide skeleton_attack
         show skeleton_idle
@@ -91,8 +92,16 @@ label fightmenu:
                 hide skeleton_idle
                 show skeleton_hit:
                     pos (873, 244) zpos 0.2 rotate -2.0 zoom 7.0 
-                $ enemy_hp -= 4
-                "That's a heavy hit!  Enemy has [enemy_hp] hp!"
+                $ crit_chance = renpy.random.randint(1, 3)
+                if crit_chance == 3:
+                    $ enemy_hp -= 6
+                    hide skeleton_idle
+                    show skeleton_hit
+                    "CRITICAL HIT!"
+                    "Enemy has [enemy_hp] hp!"
+                else:
+                    $ enemy_hp -= 4
+                    "That's a heavy hit!  Enemy has [enemy_hp] hp!"
                 hide slayer_heavyattack
                 show slayer_idle:
                     pos (586, 265) zpos 0.2 zoom 6.41 
@@ -138,6 +147,7 @@ label fightmenu:
     "You died..."
 
     menu victory_menu:
+
         "Play this level again?":
             hide skeleton_dead
             show skeleton_idle:
@@ -188,3 +198,20 @@ label dodge:
             show skeleton_idle:
                 pos (873, 244) zpos 0.2 rotate -2.0 zoom 7.0 
             jump fightmenu
+# WIP
+#screen hp_bars_1v1:
+
+#    vbox:
+#        spacing 20
+#       xalign 0.1
+#       yalign 0.0
+#        xmaximum 600
+#        text "Player 1"
+#        bar value player_hp range player_max_hp
+#    vbox:
+#        spacing 20
+#        xalign 0.9
+#        yalign 0.0
+#        xmaximum 600
+#        text "Skeleton"
+#        bar value enemy_hp range enemy_max_hp
